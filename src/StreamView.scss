@@ -1,0 +1,133 @@
+
+$draft-width: 800px;
+$draft-height: 1000px;
+
+$team-width: 500px;
+$team-height: 1000px;
+
+$team-draft-padding: 25px;
+
+$player-height: 150px;
+
+.shadow-container {
+  filter: drop-shadow(-1px 0px 0px $border)
+  drop-shadow(1px 0px 0px $border)
+  drop-shadow(0px -1px 0px $border)
+  drop-shadow(0px 1px 0px $border);
+}
+
+.stream-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.draft-container {
+  position: absolute;
+  top: 50px;
+  left: 1920px / 2 - $draft-width / 2;
+  width: $draft-width;
+  height: $draft-height;
+
+  text-align: center;
+}
+
+.team-container {
+  position: absolute;
+  top: 50px;
+
+  width: $team-width;
+  height: $team-height;
+}
+
+.team-container.left {
+  right: (1920px / 2) + ($draft-width / 2) + $team-draft-padding;
+  text-align: left;
+}
+
+.team-container.right {
+  text-align: right;
+  left: (1920px / 2) + ($draft-width / 2) + $team-draft-padding;
+}
+
+.team-container > h1 {
+  margin: 20px;
+}
+
+.player {
+  background-color: $panel-background;
+  width: $team-width - 50px;
+  height: $player-height;
+  margin-bottom: 35px;
+  margin-left: 25px;
+}
+
+.left .player {
+  --notchSize: 25px;
+  clip-path: polygon(0% 0%, calc(100% - var(--notchSize)) 0%, 100% var(--notchSize), 100% 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+}
+
+.right .player {
+  --notchSize: 25px;
+  clip-path: polygon(var(--notchSize) 0%, 0% 0%, 100% 0%, 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, 0% 100%, 0% 100%, 0% var(--notchSize));
+}
+
+.left .player > .info {
+  padding-left: $player-height;
+}
+
+.right .player > .info {
+  padding-right: $player-height;
+}
+
+.player > .info > h2 {
+  padding-top: 50px;
+}
+
+.player > .info > div {
+  padding-top: 0px;
+}
+
+.player > .ship > img {
+  width: $player-height;
+  height: $player-height;
+  opacity: 1;
+}
+
+.right .player > .ship > img {
+  position: absolute;
+  left: 25px;
+  mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.left .player > .ship > img {
+  position: absolute;
+  right: 25px;
+  mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.player > .portrait > img {
+  width: $player-height;
+  height: $player-height;
+  position: absolute;
+  opacity: 1;
+  top: 0px;
+}
+
+.ship-picked .portrait > img {
+  opacity: 1; // player portrait is faded out to highlight ship once chosen
+}
+
+.left .player > .portrait > img {
+  float: left;
+  left: 0px;
+  mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.right .player > .portrait > img {
+  float: right;
+  right: 0px;
+  mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+}
